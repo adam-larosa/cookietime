@@ -1,4 +1,9 @@
 
+import { useEffect } from 'react'
+
+
+
+
 const handleResponse = r => {
 	if( r.ok ) {
 		console.log( 'STATUS:', r.status )
@@ -9,12 +14,40 @@ const handleResponse = r => {
 	}
 }
 
+
+
+
+
+
 function App() {
+
+	useEffect( () => {
+
+		fetch( `/users/${id}` )
+			
+			.then( responseObj => {
+
+				if( r.ok ) {
+					// do the cool stuff
+				} else {
+					//change the other state
+				}
+
+			} )
+
+		
+
+	}, [] )
+
 
 	const testGetRequest = () => {
 		fetch( '/users' ).then( handleResponse )
 			.catch( e => console.error( 'GET users CATCH:', e ) )
 	}
+
+
+
+
 	const testPostRequest = () => {
 		fetch( '/users', {
 			method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -27,12 +60,15 @@ function App() {
 	return (
 		<div className="App">
 			<h1>hello world</h1>
+
 			<button onClick={ testGetRequest }>
 				GET request
 			</button>
+
 			<button onClick={ testPostRequest }>
 				POST request
 			</button>
+
 		</div>
 	);
 }

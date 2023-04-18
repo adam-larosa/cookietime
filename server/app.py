@@ -7,9 +7,24 @@ from config import app, db, api, bcrypt
 
 class Users( Resource ):
     def get( self ):
-        #ipdb.set_trace()
+
+
+        if foundInstance == None:
+            return make_response( {'look': 'elsewhere'}, 404 )
+
+
+
+
+
+
+
+
+
+
+        ipdb.set_trace()
         response = make_response( { 'hello': 'meow' }, 200 )
-        return response
+        session[ 'funstuff' ] = 's00per s33kret meowtown!'
+        return response 
 
     def post( self ):
         #ipdb.set_trace()
