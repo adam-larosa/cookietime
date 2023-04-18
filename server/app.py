@@ -8,12 +8,15 @@ from config import app, db, api, bcrypt
 class Users( Resource ):
     def get( self ):
         #ipdb.set_trace()
-        response = make_response( { 'hello': 'meow' }, 200 )
+        response = make_response( { 'hello': session.get( 'meow' ) }, 200 )
+        
+        session[ 'meow' ] = 'assign this object an attribute'
+        
         return response
 
     def post( self ):
         #ipdb.set_trace()
-        return make_response( { 'hello': 'meow' }, 200 )
+        return make_response( { 'hello': 'postmeow' }, 200 )
 
 
 api.add_resource( Users, '/users' )

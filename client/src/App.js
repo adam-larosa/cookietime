@@ -1,4 +1,5 @@
 
+
 const handleResponse = r => {
 	if( r.ok ) {
 		console.log( 'STATUS:', r.status )
@@ -11,10 +12,15 @@ const handleResponse = r => {
 
 function App() {
 
+
+
 	const testGetRequest = () => {
 		fetch( '/users' ).then( handleResponse )
 			.catch( e => console.error( 'GET users CATCH:', e ) )
 	}
+
+
+
 	const testPostRequest = () => {
 		fetch( '/users', {
 			method: 'POST', headers: { 'Content-Type': 'application/json' },
@@ -24,15 +30,22 @@ function App() {
 		} ).then( handleResponse )
 			.catch( e => console.error( 'POST users CATCH:', e ) )
 	}
+
+
+
 	return (
 		<div className="App">
+
 			<h1>hello world</h1>
+
 			<button onClick={ testGetRequest }>
 				GET request
 			</button>
+
 			<button onClick={ testPostRequest }>
 				POST request
 			</button>
+
 		</div>
 	);
 }
