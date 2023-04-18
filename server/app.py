@@ -1,27 +1,24 @@
-from flask import Flask
-from flask_migrate import Migrate
-from flask_restful import Api, Resource
 
-from models import db
+import ipdb
+from flask import request, make_response, session
+from flask_restful import Resource
 
-app = Flask( __name__ )
-app.config[ 'SQLALCHEMY_DATABASE_URI' ] = 'sqlite:///demo.db'
-app.config[ 'SQLALCHEMY_TRACK_MODIFICATIONS' ] = False
-migrate = Migrate( app, db )
-db.init_app( app )
-api = Api( app )
-
+from config import app, db, api, bcrypt
 
 class Users( Resource ):
     def get( self ):
-        return "meow"
+        #ipdb.set_trace()
+        response = make_response( { 'hello': 'meow' }, 200 )
+        response.set_cookie( 'meow name', 'meow value' )
+        return response
+
+    def post( self ):
+        #ipdb.set_trace()
+        return make_response( { 'hello': session['meow'] }, 200 )
+
 
 api.add_resource( Users, '/users' )
 
 
-@app.route( '/' )
-def root():
-    return 'website!\n'
-
 if __name__ == '__main__':
-    app.run( port = 5555, debug = True )
+    app.run(port=5555, debug=True)
